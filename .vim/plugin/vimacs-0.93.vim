@@ -180,7 +180,7 @@ if has("unix") && !has("gui_running") && g:VM_UnixConsoleMetaSendsEsc
   set <M-l>=l
   set <M-m>=m
   set <M-n>=n
-  set <M-o>=o
+  "set <M-o>=o
   set <M-p>=p
   set <M-q>=q
   set <M-r>=r
@@ -439,6 +439,7 @@ cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 cmap <C-a> <Home>
 cmap <C-e> <End>
+cmap <C-0> <C-o>d)
 
 " Editing
 cmap <M-p> <Up>

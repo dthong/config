@@ -104,6 +104,16 @@ noremap  <silent> <D-\> :call UnCommentLine()<CR>
 vnoremap <silent> <D-\> :call RangeUnCommentLine()<CR>
 inoremap <silent> <D-\> <C-o>:call RangeUnCommentLine()<CR>
 
+noremap  <silent> <A-/> :call RangeCommentLine()<CR>
+" key-mappings for range comment lines in visual <Shift-V> mode
+vnoremap <silent> <A-/> :call RangeCommentLine()<CR>
+inoremap <silent> <A-/> <C-o>:call RangeCommentLine()<CR>
+
+" key-mappings for un-comment line in normal mode
+noremap  <silent> <C-\> :call UnCommentLine()<CR>
+" key-mappings for range un-comment lines in visual <Shift-V> mode
+vnoremap <silent> <C-\> :call RangeUnCommentLine()<CR>
+inoremap <silent> <C-\> <C-o>:call RangeUnCommentLine()<CR>
 " function to comment line in normal mode
 function! CommentLine()
   let file_name = buffer_name("%")

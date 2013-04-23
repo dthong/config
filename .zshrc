@@ -22,6 +22,8 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY
 setopt ALL_EXPORT
 
 setopt MENUCOMPLETE
+setopt completealiases
+
 # Set/unset  shell options
 setopt   notify globdots correct pushdtohome cdablevars autolist
 setopt   correctall autocd recexact longlistjobs
@@ -33,13 +35,17 @@ unsetopt bgnice autoparamslash
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
-# zmodload -ap zsh/mapfile mapfile
+zmodload -ap zsh/mapfile mapfile
+#autoload bashcompinit; bashcompinit
 
 
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:/Users/dthong/bin:$PATH"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:/Users/dthong/bin:/Users/dthong/Work/hadoop-0.20.2/bin:$PATH"
+PATH="/Users/dthong/Work/apache-maven-3.0.3/bin:$PATH"
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
-PYTHONPATH=".:./lib/python"
-GIT_EDITOR=vim
+export JAVA_HOME=`/usr/libexec/java_home`
+HADOOP_HOME="/Users/dthong/Work/hadoop-0.20.2"
+export DYLD_LIBRARY_PATH=$HADOOP_HOME/src/c++/install/lib:$DYLD_LIBRARY_PATH
+PYTHONPATH=".:./lib/python:/usr/local/lib/python2.7/site-packages"
 TZ="America/New_York"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
@@ -80,14 +86,15 @@ alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias ll='ls -al'
 alias ls='ls -G '
-alias latexmk='latexmk.pl -pdf -pvc'
+alias make=pretty_make.py
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
 alias dmesg="sudo dmesg"
-alias ranger='EDITOR=vim /Library/Frameworks/Python.framework/Versions/2.7/bin/ranger'
+alias remotePrint="chicago lpr -P clemens "
+alias ranger="EDITOR=vim /Library/Frameworks/Python.framework/Versions/2.7/bin/ranger"
 #if [[ $HOSTNAME == "kamna" ]] {
 #	alias emacs='emacs -l ~/.emacs.kamna'
 #}	
@@ -111,7 +118,6 @@ autoload -U compinit
 compinit
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-#bindkey '^X/' _bash_complete-word
 #bindkey '^r' history-incremental-search-backward
 #bindkey "^[[5~" up-line-or-history
 #bindkey "^[[6~" down-line-or-history
@@ -132,20 +138,20 @@ zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
-zstyle ':completion:*' menu select=3 _complete _ignored _approximate
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+zstyle ':completion:*' menu select=3 _complete _ignored 
+#zstyle -e ':completion:*:approximate:*' max-errors \
+    #'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:processes' command 'ps -axw'
 zstyle ':completion:*:processes-names' command 'ps -awxho command'
 # Completion Styles
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+zstyle ':completion:*::::' completer _expand _complete _ignored 
 
 # allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+#zstyle -e ':completion:*:approximate:*' max-errors \
+    #'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
     
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
@@ -192,6 +198,6 @@ zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
 
-export WORDCHARS='*?_[]~=&;!#$%^(){}'
+export WORDCHARS='*?_[]~&;!#$%^(){}'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
