@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/dthong/temp'
+let g:netrw_dirhist_2='/Users/dthong/Firefox.app'
+let g:netrw_dirhist_3='/Users/dthong/indexes-2'
+let g:netrw_dirhist_4='/Volumes/chicago/clueweb/script'
+let g:netrw_dirhist_5='/Users/dthong/.vim'
+let g:netrw_dirhist_6='/Volumes/veffa'
+let g:netrw_dirhist_7='/Users/dthong/Work/DIR/clueweb/wiki-sample300'
