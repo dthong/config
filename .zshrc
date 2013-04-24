@@ -118,6 +118,7 @@ autoload -U compinit
 compinit
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey -s '^o' 'fg\n'
 #bindkey '^r' history-incremental-search-backward
 #bindkey "^[[5~" up-line-or-history
 #bindkey "^[[6~" down-line-or-history
