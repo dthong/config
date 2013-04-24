@@ -7,8 +7,8 @@
 if exists('b:mapped_auto_closetag') || &cp | finish | endif
 let b:mapped_auto_closetag = 1
 
-ino <buffer> <silent> < <
-ino <buffer> <silent> > ><Left><c-r>=<SID>CloseTag()<cr>
+" ino <buffer> <silent> < <><left>
+ino <buffer> <silent> > ><left><c-r>=<SID>CloseTag()<cr>
 ino <buffer> <expr> <cr> <SID>Return()
 
 if exists('s:did_auto_closetag') | finish | endif

@@ -1,11 +1,20 @@
 let g:netrw_dirhistmax  =10
+<<<<<<< HEAD
+let g:netrw_dirhist_cnt =7
+=======
 let g:netrw_dirhist_cnt =9
+>>>>>>> 30305d1e6eabb9e1315ddacc56eea377b92a99cc
 let g:netrw_dirhist_1='/Users/dthong/temp'
 let g:netrw_dirhist_2='/Users/dthong/Firefox.app'
 let g:netrw_dirhist_3='/Users/dthong/indexes-2'
 let g:netrw_dirhist_4='/Volumes/chicago/clueweb/script'
 let g:netrw_dirhist_5='/Users/dthong/.vim'
+<<<<<<< HEAD
+let g:netrw_dirhist_6='/Volumes/veffa'
+let g:netrw_dirhist_7='/Users/dthong/Work/DIR/clueweb/wiki-sample300'
+=======
 let g:netrw_dirhist_6='/Applications/MAMP'
 let g:netrw_dirhist_7='/Users/dthong/Work/will/project/app/scripts'
 let g:netrw_dirhist_8='/Users/dthong/nodejs/node-login/app'
 let g:netrw_dirhist_9='/Users/dthong/.vim/bundle/syntastic/autoload'
+>>>>>>> 30305d1e6eabb9e1315ddacc56eea377b92a99cc
