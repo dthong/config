@@ -35,9 +35,10 @@ unsetopt bgnice autoparamslash
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
-#zmodload -ap zsh/mapfile mapfile
-#autoload bashcompinit; bashcompinit
+zmodload -ap zsh/mapfile mapfile
 
+#[[ $TERM = "xterm" ]] && stty pass8 && bindkey -me
+#[[ $TERM = "xterm" ]] && stty -parenb -istrip cs8 && bindkey -me
 
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:/Users/dthong/bin:/Users/dthong/Work/hadoop-0.20.2/bin:$PATH"
 PATH="/Users/dthong/Work/apache-maven-3.0.3/bin:$PATH"
@@ -64,6 +65,9 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 PS1="[$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR]%(!.#.$) "
+if [ $RANGER_RUNNING ]; then
+	PS1="[$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_GREEN%2c$PR_NO_COLOR]%(!.#.$) "
+fi
 RPS1="$PR_MAGENTA(%D{%m-%d %H:%M})$PR_NO_COLOR"
 #LANGUAGE=
 LC_ALL='en_US.UTF-8'
@@ -114,6 +118,8 @@ stty erase ^H &>/dev/null
 
 #chpwd
 
+[[ $TERM = "xterm" ]] && export TERM="xterm-color"
+bindkey -e
 autoload -U compinit
 compinit
 bindkey '^p' history-search-backward
@@ -123,6 +129,9 @@ bindkey -s '^o' 'fg\n'
 #bindkey "^[[5~" up-line-or-history
 #bindkey "^[[6~" down-line-or-history
 #bindkey "^[[H" beginning-of-line
+#bindkey "^a" beginning-of-line
+#bindkey "^e" end-of-line
+
 #bindkey "^[[1~" beginning-of-line
 #bindkey "^[[F"  end-of-line
 #bindkey "^[[4~" end-of-line
@@ -148,11 +157,11 @@ zstyle ':completion:*:processes-names' command 'ps -awxho command'
 # Completion Styles
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored 
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 
 # allow one error for every three characters typed in approximate completer
-#zstyle -e ':completion:*:approximate:*' max-errors \
-    #'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+# zstyle -e ':completion:*:approximate:*' max-errors \
+#     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
     
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
@@ -199,6 +208,6 @@ zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
 
-export WORDCHARS='*?_[]~&;!#$%^(){}'
+export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
